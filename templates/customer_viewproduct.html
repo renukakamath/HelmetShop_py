@@ -1,0 +1,65 @@
+{% include 'customerheader.html'%}
+
+
+<!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+
+        <div class="section-title">
+         <center>
+         	<h1>view Product</h1>
+	<form method="post">
+			<table>
+				<tr>
+					<td><input type="text" placeholder="search here....." name="product"></td>
+					<td><input type="submit" class="btn btn-success" name="search"></td>
+				</tr>
+			</table>
+	</form>
+</center>
+
+        </div>
+
+      
+        <div class="row portfolio-container" style="height: 1000px">
+{% for row in data['productsearch']%}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
+
+          		
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="/{{row['product_image']}}"   class="img-fluid" alt=""/>
+              </figure>
+
+              <div class="portfolio-info">
+                <span>category:{{row['category_name']}}</span><br>
+                <span>SubCategory:{{row['subcategory_name'] }}</span><br>
+
+<!-- <span>Color:{{row['color_name']}}</span><br>
+<span>Brand:{{row['brand_name']}}</span><br>
+<span>Name:{{row['product_name']}}</span><br>
+
+<span>Description:{{row['product_description'] }}</span><br>
+<span>Rate:{{row['product_rate'] }}</span><br> -->
+
+    		{% if row['stock'] | int > 0 %}
+    		<span><a href="customer_addtocart?pid={{row['product_id']}}&pname={{row['product_name']}}&pdis={{row['product_description']}}&pimg={{row['product_image']}}&pamo={{row['product_rate']}}&stock={{row['stock']}}">Add To Cart</a></span><br>
+
+    		{% elif row['stock'] | int <= 0 %}
+
+   
+            <span><a class="btn btn-success" href="#">Out  Of  Stock</a></span>
+             {% endif %}
+         
+              </div>
+            </div>
+           
+          </div>
+ {% endfor %}
+         
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+
+{% include 'footer.html'%}

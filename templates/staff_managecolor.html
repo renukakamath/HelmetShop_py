@@ -1,0 +1,80 @@
+{% include 'staffheader.html'%}
+
+
+ <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center" style="height: 700px">
+    <div class="container text-center text-md-left" data-aos="fade-up">
+<center>
+<h1>Manage Color</h1>
+<form method="post">
+	{% if data['colorupdate']%}
+	<table class="table" style="width:500px;color: white">
+		<tr>
+			<th>Name</th>
+			<td><input type="text" required="" class="form-control" value="{{data['colorupdate'][0]['color_name'] }}" name="fname"></td>
+		</tr>
+		
+		
+		<tr>
+			<th>Description</th>
+			<td><textarea name="dis" required="" class="form-control">{{data['colorupdate'][0]['color_desc']}}</textarea></td>
+		</tr>
+		
+		
+		<td align="center" colspan="2"><input type="submit" name="update" value="submit" class="btn btn-success"></td>
+	</table>
+{% else %}
+	<table class="table" style="width:500px;color: white">
+		<tr>
+			<th>Name</th>
+			<td><input type="text" required="" class="form-control" name="fname"></td>
+		</tr>
+		
+		
+		<tr>
+			<th>Description</th>
+			<td><textarea name="dis" required="" class="form-control"></textarea></td>
+		</tr>
+		
+		
+		<td align="center" colspan="2"><input type="submit" name="color" value="submit" class="btn btn-success"></td>
+	</table>
+{% endif %}
+</form>
+</center>
+              
+</div></section>
+
+<center>
+	<h1>view color</h1>
+	<form>
+		<table class="table" style="width: 500px">
+			<tr>
+				<th>sino</th>
+				<th> Color Name</th>
+				<th>Description</th>
+				
+				
+			</tr>
+	{% for row in data['colorview']%}
+    	<tr>
+    		<td>{{loop.index}}</td>
+    		<td>{{row['color_name']}}></td>
+    		<td>{{row['color_desc'] }}</td>
+    	
+    		{% if row ['color_status']=="1"%}
+
+            <td><a class="btn btn-success" href="?action=inactive&cid={{row['color_id']}}">InActive</a></td>
+           
+{% elif row ['status']=="0"%}
+    			<td><a class="btn btn-success" href="?action=action&cid={{row['color_id']}}">Active</a></td>
+    		{% endif %}
+    		
+    		<td><a class="btn btn-success" href="?action=update&cid={{row['color_id']}}">update</a></td>
+    	</tr>
+    {%endfor %}
+    
+		</table>
+	</form>
+</center>
+{% include 'footer.html'%}

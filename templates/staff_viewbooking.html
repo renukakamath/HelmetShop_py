@@ -1,0 +1,57 @@
+{% include 'staffheader.html'%}
+
+
+ <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center" style="height: 700px">
+    <div class="container text-center text-md-left" data-aos="fade-up">
+<center>
+	<h1>view Bookings</h1>
+	<form>
+		<table class="table" style="width: 500px">
+			<tr>
+				<th>sino</th>
+				<th>category</th>
+				<th>SubCategory</th>
+				<th>Color</th>
+				<th>Brand</th>
+
+				
+				<th>Name</th>
+				<th>Description</th>
+				<th>purchase Image</th>
+				<th>cost price</th>
+				<th>quantity</th>
+				<th>Total</th>
+				<th>Status</th>
+				
+			</tr>
+			{% for row in data['bookingview']%}
+    	<tr>
+    		<td>{{loop.index}}</td>
+    		<td>{{row['category_name']}}</td>
+    		<td>{{row['subcategory_name'] }}</td>
+    		<td>{{row['color_name']}}</td>
+    		<td>{{row['brand_name']}}</td>
+    		<td>{{row['product_name']}}></td>
+    		<td>{{row['description'] }}</td>
+    		<td><img src="{{row['product_image'] }}" height="100" width="100"></td>
+    		
+    		<td>{{row['quantity'] }}</td>
+    		<td>{{row['order_status']}}</td>
+    		<td><a href="?action=picked&oid={{row['order_master_id']}}">Picked</a></td>
+    		{% if row['order_status']=="Picked"%}
+    		<td><a href="?action=Delivered&oid={{row['order_master_id']}}">Delivered</a></td>
+    		{% endif %}
+    		
+    	
+    		
+   
+    		
+    	</tr>
+    	{% endfor %}
+   
+		</table>
+	</form>
+</center>
+</div></section>
+{% include 'footer.html'%}

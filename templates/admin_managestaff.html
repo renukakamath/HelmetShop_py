@@ -1,0 +1,201 @@
+{% include 'adminheader.html'%}
+
+
+<!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center" style="height: 900px">
+    <div class="container text-center text-md-left" data-aos="fade-up">
+<center>
+<h1>Manage Staff</h1>
+<form method="post">
+	{% if data['staffupdate'] %}
+	<table class="table" style="width:500px">
+		<tr>
+			<th>First Name</th>
+			<td><input type="text" required="" class="form-control" value="{{data['staffupdate'][0]['staff_fname']}}"  name="fname"></td>
+		</tr>
+		<tr>
+			<th>Last Name</th>
+			<td><input type="text" required="" class="form-control" value="{{data['staffupdate'][0]['staff_lname']}}" name="lname"></td>
+		</tr>
+		<tr>
+			<th>Gender</th>
+			<td><input type="radio" required=""  class="btn btn-success" name="gen" value="female">Female
+			<input type="radio" required="" class="btn btn-success" name="gen" value="male">male
+			<input type="radio" required=""  class="btn btn-success" name="gen" value="other">Others</td>
+		</tr>
+			<tr>
+			<th>Date</th>
+			<td><input type="date" required="" class="form-control" value="{{data['staffupdate'][0]['staff_dob']}}"  name="date"></td>
+		</tr>
+
+		<tr>
+			<th>House Name</th>
+			<td><input type="text" required="" class="form-control" value="{{data['staffupdate'][0]['staff_house_name']}}"  name="hno"></td>
+		</tr>
+
+<tr>
+			<th>Street</th>
+			<td><input type="text" required="" class="form-control"  value="{{data['staffupdate'][0]['staff_street']}}"  name="street"></td>
+		</tr>
+
+		<tr>
+			<th>District</th>
+			<td><input type="text" required="" class="form-control" value="{{data['staffupdate'][0]['staff_dist']}}"  name="district"></td>
+		</tr>
+
+		<tr>
+			<th>State</th>
+			<td><input type="text" required="" class="form-control" value="{{data['staffupdate'][0]['staff_dist']}}" name="state"></td>
+		</tr>
+
+		<tr>
+			<th>Pincode</th>
+			<td><input type="text" required="" pattern="[0-9]{6}" value="{{data['staffupdate'][0]['staff_pincode']}}" class="form-control"name="pin"></td>
+		</tr>
+		<tr>
+			<th>Phone</th>
+			<td><input type="text" required="" pattern="[0-9]{10}" value="{{data['staffupdate'][0]['staff_phone']}}"  class="form-control" name="num"></td>
+		</tr>
+		
+<tr>
+			<th>Email</th>
+			<td><input type="email" required="" value="{{data['staffupdate'][0]['staff_email']}}" class="form-control"  name="email"></td>
+		</tr>
+	
+		
+		
+		
+		
+
+		<td align="center" colspan="2"><input type="submit" name="update" value="submit" class="btn btn-success"></td>
+	</table>
+{% else %}
+	<table class="table" style="width:500px">
+		<tr>
+			<th>First Name</th>
+			<td><input type="text" required="" class="form-control" name="fname"></td>
+		</tr>
+		<tr>
+			<th>Last Name</th>
+			<td><input type="text" required="" class="form-control" name="lname"></td>
+		</tr>
+		<tr>
+			<th>Gender</th>
+			<td><input type="radio" required=""  class="btn btn-success" name="gen" value="female">Female
+			<input type="radio" required="" class="btn btn-success" name="gen" value="male">male
+			<input type="radio" required=""  class="btn btn-success" name="gen" value="other">Others</td>
+		</tr>
+<tr>
+			<th>Date</th>
+			<td><input type="date" required="" class="form-control" name="date"></td>
+		</tr>
+
+		<tr>
+			<th>House Name:</th>
+			<td><input type="text" required="" class="form-control" name="hno"></td>
+		</tr>
+
+		<tr>
+			<th>Street</th>
+			<td><input type="text" required="" class="form-control" name="street"></td>
+		</tr>
+		<tr>
+			<th>District</th>
+			<td><input type="text" required="" class="form-control" name="district"></td>
+		</tr>
+		<tr>
+			<th>State</th>
+			<td><input type="text" required="" class="form-control"  name="state"></td>
+		</tr>
+
+		<tr>
+			<th>Pincode</th>
+			<td><input type="text" required="" pattern="[0-9]{6}" class="form-control" name="pin"></td>
+		</tr>
+		<tr>
+			<th>Phone</th>
+			<td><input type="text" required="" pattern="[0-9]{10}" class="form-control" name="num"></td>
+		</tr>
+		
+		<tr>
+			<th>Email</th>
+			<td><input type="email" required="" class="form-control"  name="email"></td>
+		</tr>
+	
+		
+		
+
+		<tr>
+			<th>User Name</th>
+			<td><input type="email" required="" class="form-control"  name="uname"></td>
+		</tr>
+		<tr>
+			<th>Password</th>
+			<td><input type="password" required="" class="form-control" name="pwd"></td>
+		</tr>
+		<td align="center" colspan="2"><input type="submit" name="staffreg" value="submit" class="btn btn-success"></td>
+	</table>
+{% endif %}
+</form>
+</center>
+</div></section>
+<center>
+	<h1>view Staff</h1>
+	<form>
+		<table class="table" style="width: 500px">
+		<tr>
+				<th>sino</th>
+			   <th>First Name</th>
+				<th>Last Name</th>
+				<th>Gender</th>
+				<th>Date</th>
+				 <th>House Name</th>
+				  <th>Street</th>
+				<th>District</th>
+				<th>State</th>
+				<th>Pincode</th>
+				<th>Phone</th>
+				<th>Email</th>
+			   		
+		</tr>
+			{% for row in data['staffview']%}
+    	<tr>
+    		<td>{{loop.index}}</td>
+    		<td>{{row['staff_fname'] }}</td>
+    		<td>{{row['staff_lname']}}</td>
+    		<td>{{row['staff_gender']}}</td>
+    		<td>{{row['staff_dob'] }}</td>
+    		<td>{{row['staff_house_name'] }}</td>
+    		<td>{{row['staff_street'] }}</td>
+    	
+    		<td>{{row['staff_dist'] }}</td>
+    		<td>{{row['staff_state']}}</td>
+    		<td>{{row['staff_pincode'] }}</td>
+    		<td>{{row['staff_phone'] }}</td>
+    		<td>{{row['staff_email']}}</td>
+
+
+    	{% if row['status']=='1' %}
+
+       <td><a class="btn btn-danger" href="?action=inactive&uid={{row['username']}}">In Actice</a></td>
+
+     {% elif row['status']=='0'%}
+           
+           
+    		
+    			<td><a class="btn btn-success" href="?action=active&uid={{row['username']}}">Active</a></td>
+
+    		
+    		{% endif %}
+    			
+    
+    		   <td><a class="btn btn-success" href="?action=update&uid={{row['username']}}">Update</a></td>
+
+    		
+    
+    	</tr>
+    	{% endfor %}
+   
+		</table>
+	</form>
+</center>

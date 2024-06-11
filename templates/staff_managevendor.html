@@ -1,0 +1,150 @@
+{% include 'staffheader.html'%}
+
+
+ <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center" style="height: 700px">
+    <div class="container text-center text-md-left" data-aos="fade-up">
+<center>
+<h1>Manage Vendor</h1>
+<form method="post">
+
+	{% if data['vendorupdate']%}
+
+	<table class="table" style="width:500px">
+		<tr>
+			<th>Name</th>
+			<td><input type="text" required="" class="form-control" value="{{data['vendorupdate'][0]['vendor_name']}}" name="fname"></td>
+		</tr>
+		
+		
+		<tr>
+			<th>Phone</th>
+			<td><input type="text" required="" pattern="[0-9]{10}" class="form-control" value="{{data['vendorupdate'][0]['vendor_phone']}}"    name="num"></td>
+		</tr>
+		<tr>
+			<th>E-Mail</th>
+			<td><input type="email" required="" class="form-control" value="{{data['vendorupdate'][0]['vendor_email']}}"  name="email"></td>
+		</tr>
+
+		<tr>
+			<th>House Name</th>
+			<td><input type="text" required="" class="form-control" value="{{data['vendorupdate'][0]['vendor_hno']}}"  name="hno"></td>
+		</tr>
+			<tr>
+			<th>Street</th>
+			<td><input type="text" required="" class="form-control" value="{{data['vendorupdate'][0]['vendor_street']}}"   name="street"></td>
+		</tr>
+		<tr>
+			<th>District</th>
+			<td><input type="text" required="" class="form-control" value="{{data['vendorupdate'][0]['vendor_dist']}}"    name="district"></td>
+		</tr>
+		<tr>
+			<th>Pincode</th>
+			<td><input type="text" required="" pattern="[0-9]{6}" value="{{data['vendorupdate'][0]['vendor_pin']}}" class="form-control"  name="pin"></td>
+		</tr>
+		<tr>
+			<th>Date</th>
+			<td><input type="date" required="" value="{{data['vendorupdate'][0]['vendor_date']}}"   class="form-control" name="date"></td>
+		</tr>
+		
+		
+		<td align="center" colspan="2"><input type="submit" name="up" value="submit" class="btn btn-success"></td>
+	</table>
+{% else %}
+	<table class="table" style="width:500px">
+		<tr>
+			<th>Name</th>
+			<td><input type="text" required="" class="form-control" name="fname"></td>
+		</tr>
+		
+		
+		<tr>
+			<th>Phone</th>
+			<td><input type="text" required="" pattern="[0-9]{10}" class="form-control" name="num"></td>
+		</tr>
+		<tr>
+			<th>E-Mail</th>
+			<td><input type="email" required="" class="form-control" name="email"></td>
+		</tr>
+
+		<tr>
+			<th>House Name</th>
+			<td><input type="text" required="" class="form-control" name="hno"></td>
+		</tr>
+			<tr>
+			<th>Street</th>
+			<td><input type="text" required="" class="form-control" name="street"></td>
+		</tr>
+		<tr>
+			<th>District</th>
+			<td><input type="text" required="" class="form-control" name="district"></td>
+		</tr>
+		<tr>
+			<th>Pincode</th>
+			<td><input type="text" required="" pattern="[0-9]{6}" class="form-control" name="pin"></td>
+		</tr>
+		<tr>
+			<th>Date</th>
+			<td><input type="date" required="" class="form-control" name="date"></td>
+		</tr>
+
+
+		
+		
+		<td align="center" colspan="2"><input type="submit" name="vendor" value="submit" class="btn btn-success"></td>
+	</table>
+{% endif %}
+</form>
+</center>
+</div></section>
+<center>
+	<h1>view Vendor</h1>
+	<form>
+		<table class="table" style="width: 500px">
+			<tr>
+				<th>sino</th>
+				<th>Name</th>
+				<th>Phone</th>
+				<th>E-Mail</th>
+					<th>House No:</th>
+					<th>Street</th>
+					<th>District</th>
+					<th>Pincode</th>
+					<th>Date</th>
+
+				
+				
+				
+			</tr>
+	{% for row in data['vendorview']%}
+    	<tr>
+    		<td>{{loop.index}}</td>
+    		<td>{{row['vendor_name'] }}</td>
+    		<td>{{row['vendor_phone'] }}</td>
+
+    		<td>{{row['vendor_email'] }}</td>
+    		<td>{{row['vendor_hno'] }}</td>
+    		<td>{{row['vendor_street'] }}</td>
+    		<td>{{row['vendor_dist'] }}</td>
+    		<td>{{row['vendor_pin']}}</td>
+    		<td>{{row['vendor_date']}}</td>
+    		
+
+    		{% if row ['vendor_status']=="1"%}
+              <td><a class="btn btn-success" href="?action=inactive&vid={{row['vendor_id']}}">InActive</a></td>
+            
+             {% elif row ['vendor_status']=="0"%}
+             	<td><a class="btn btn-success" href="?action=active&vid={{row['vendor_id']}}">Active</a></td>
+         
+           {% endif %}
+      <td><a class="btn btn-success" href="?action=update&vid={{row['vendor_id']}}">Update</a></td>
+             
+    	</tr>
+    	{% endfor %}
+    
+		</table>
+    
+	</form>
+</center>
+
+{% include 'footer.html'%}
